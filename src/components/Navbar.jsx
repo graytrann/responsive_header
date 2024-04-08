@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavbarStyles.css";
 
 export default function Navbar() {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
   return (
     <>
       <nav>
@@ -38,9 +43,11 @@ export default function Navbar() {
           </svg>
         </a>
         <div>
-          <ul>
+          <ul id="navbar" className={clicked ? "#navbar active" : "#navbar"}>
             <li>
-              <a href="index.html">Home</a>
+              <a className="active" href="index.html">
+                Home
+              </a>
             </li>
             <li>
               <a href="index.html">Shop</a>
@@ -55,6 +62,9 @@ export default function Navbar() {
               <a href="index.html">Contact</a>
             </li>
           </ul>
+        </div>
+        <div id="mobile" onClick={handleClick}>
+          <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
         </div>
       </nav>
     </>
